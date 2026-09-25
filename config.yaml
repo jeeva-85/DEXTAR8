@@ -1,0 +1,46 @@
+project:
+  name: "RAILBLOCK AI"
+  version: "1.0.0"
+  environment: "development"
+
+paths:
+  raw_data_dir: "data/raw"
+  processed_data_dir: "data/processed"
+  synthetic_data_dir: "data/synthetic"
+  metadata_dir: "data/metadata"
+  artifacts_dir: "ml/artifacts"
+  reports_dir: "reports"
+
+database:
+  url: "sqlite:///./railblock.db"
+
+ml:
+  random_seed: 42
+  m1_priority:
+    n_estimators: 150
+    learning_rate: 0.05
+    max_depth: 6
+  m2_duration:
+    n_estimators: 150
+    learning_rate: 0.05
+    max_depth: 5
+  m3_failure:
+    n_estimators: 150
+    learning_rate: 0.05
+    max_depth: 5
+
+optimizer:
+  solver: "CP-SAT"
+  max_time_in_seconds: 30
+  weights:
+    critical_task_completion: 100
+    priority_benefit: 10
+    coordination_bonus: 50
+    block_utilization: 25
+    train_conflict_penalty: 500
+    late_maintenance_penalty: 20
+    unused_block_penalty: 5
+
+server:
+  host: "0.0.0.0"
+  port: 8000
